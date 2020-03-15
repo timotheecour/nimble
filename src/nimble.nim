@@ -1044,8 +1044,7 @@ proc test(options: Options) =
   var pkgInfo = getPkgInfo(getCurrentDir(), options)
 
   let testsDir = getCurrentDir() / "tests"
-  var files: seq[typeof(walkDir(testsDir))]
-  if testsDir.existsDir: files = toSeq(walkDir(testsDir))
+  var files = if testsDir.existsDir: toSeq(walkDir(testsDir)) else: @[]
   var
     tests, failures: int
 
